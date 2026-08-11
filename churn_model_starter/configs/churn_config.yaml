@@ -1,0 +1,41 @@
+# Churn Model Configuration
+# ===========================
+# Default parameters for the churn prediction experiment
+
+# Data preprocessing settings
+preprocessing:
+  missing_value_strategy: "median"  # Options: median, mean, drop
+  scale_features: true
+  scaling_method: "standard"        # Options: standard, minmax
+
+# Model hyperparameters
+model:
+  algorithm: "random_forest"
+  n_estimators: 100
+  max_depth: 10
+  min_samples_split: 2
+  min_samples_leaf: 1
+  random_state: 42
+  test_size: 0.2
+
+# Feature settings
+features:
+  numeric:
+    - tenure_months
+    - monthly_charges
+    - total_charges
+  categorical:
+    - contract_type
+    - payment_method
+
+# Training settings
+training:
+  cross_validation: false
+  cv_folds: 5
+  early_stopping: false
+
+# Output settings
+output:
+  save_model: true
+  model_path: "models/churn_model.pkl"
+  log_metrics: true
